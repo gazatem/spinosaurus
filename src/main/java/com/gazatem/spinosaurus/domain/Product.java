@@ -29,6 +29,19 @@ public class Product {
 	@JoinColumn(name = "account_id", nullable = false)
 	private Account account;		
 	
+	@ManyToOne
+	@JoinColumn(name = "category_id", nullable = false)
+	private Category category;			
+	
+
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public Integer getId() {
 		return id;
@@ -67,6 +80,15 @@ public class Product {
 		this.name = name;
 		this.price = price;
 		this.account = account;
+	}
+	
+
+	public Product(String name, double price, Account account, Category category) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.account = account;
+		this.category = category;
 	}
 
 	public Product() {

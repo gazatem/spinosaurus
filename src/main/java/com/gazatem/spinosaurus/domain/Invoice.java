@@ -146,4 +146,13 @@ public class Invoice {
 		this.account = account;
 	}
 
+	@Override
+	public String toString() {
+		return "Invoice [id=" + id + ", name=" + name + ", invoiceDate="
+				+ invoiceDate + ", invoiceSerie=" + invoiceSerie
+				+ ", invoiceNo=" + invoiceNo + ", total=" + total + "]";
+	}
+	
+	
+
 }

@@ -1,16 +1,13 @@
 package com.gazatem.spinosaurus.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -18,7 +15,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Product {
 
 	@Id
@@ -28,31 +25,19 @@ public class Product {
 	@NotEmpty
 	private String name;
 
-	@NotNull 
+	@NotNull
 	private double price;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "account_id", nullable = false)
-	private Account account;		
-	
+	@JoinColumn(name = "account_id", nullable = true)
+	private Account account;
+
 	@ManyToOne
-	@JoinColumn(name = "category_id", nullable = false)
-	private Category category;			
-	
-	  @ManyToMany(mappedBy="products")
-	  private List<Invoice> invoices;
-	
-	
+	@JoinColumn(name = "category_id", nullable = true)
+	private Category category;
+
 	public Category getCategory() {
 		return category;
-	}
-
-	public List<Invoice> getInvoices() {
-		return invoices;
-	}
-
-	public void setInvoices(List<Invoice> invoices) {
-		this.invoices = invoices;
 	}
 
 	public void setCategory(Category category) {
@@ -97,7 +82,6 @@ public class Product {
 		this.price = price;
 		this.account = account;
 	}
-	
 
 	public Product(String name, double price, Account account, Category category) {
 		super();
@@ -107,13 +91,23 @@ public class Product {
 		this.category = category;
 	}
 
+	public Product(Integer id, String name, double price) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
+
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
- 
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price
+				+ "]";
+	}
+
+	
 }

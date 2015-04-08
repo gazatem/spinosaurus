@@ -8,4 +8,6 @@ import com.gazatem.spinosaurus.domain.Product;
 public interface InvoiceService {
 
 	public Invoice saveProduct(Invoice invoice, Product product);
+	
+	public void deleteProduct(Invoice invoice, Product product);
 }

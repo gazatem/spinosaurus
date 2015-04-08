@@ -46,10 +46,22 @@ public class InvoiceController {
 	@RequestMapping(value = "/{id:[\\d]+}/products", method = RequestMethod.POST)
 	@ResponseStatus(value=HttpStatus.CREATED)
 	@ResponseBody
-	public void products(@PathVariable("id") int id,
+	public void addProducts(@PathVariable("id") int id,
 			@RequestBody Product product) {
 		Invoice invoice = invoiceRepository.findById((int) id);
 		service = new InvoiceServiceImpl(invoiceRepository);
+		service.saveProduct(invoice, product);
 	}
+	
+	@RequestMapping(value = "/{id:[\\d]+}/products", method = RequestMethod.DELETE)
+	@ResponseStatus(value=HttpStatus.RESET_CONTENT)
+	@ResponseBody
+	public void deleteProducts(@PathVariable("id") int id,
+			@RequestBody Product product) {
+		Invoice invoice = invoiceRepository.findById((int) id);
+		service = new InvoiceServiceImpl(invoiceRepository);
+		service.deleteProduct(invoice, product);;
+	}	
+	
 
 }

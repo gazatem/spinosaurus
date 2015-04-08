@@ -23,8 +23,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 	public Invoice saveProduct(Invoice invoice, Product product) {
 		invoice.getProducts().add(product);
 		invoice = invoiceRepository.save(invoice);
-		System.out.println(invoice.toString());
 		return invoice;
+	}
+
+	@Override
+	public void deleteProduct(Invoice invoice, Product product) {
+		// TODO Auto-generated method stub
+		invoice.getProducts().remove(product);
+		invoice = invoiceRepository.save(invoice);		
 	}
 
 }
